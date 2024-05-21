@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Süt Fabrikası Danışmanlık</title>
+    <link rel="stylesheet" href="a2.css">
+    <style>
+        .info {
+            margin-top: 200px;
+        }
+        .info p {
+            color: green;
+            font-size: 2.5em;
+            display: flex;
+            align-items: center;
+        }
+        .info p::before {
+            content: "\2713";
+            color: green;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">Ayhan Osmanlıoğlu Danışmanlık</div>
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-icon">&#9776;</label>
+            <ul>
+                <li><a href="#home">Ana Sayfa</a></li>
+                <li><a href="#about">Öz Geçmiş</a></li>
+                <li><a href="#blog">Fiyatlandırma-Paketler</a></li>
+                <li><a href="#contact">İletişim</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Kahraman Bölümü -->
+    <section id="home" class="hero">
+        <h1 class="animate-up">Hoş Geldiniz!</h1>
+        <p class="animate-up">Fabrikanızı yönetimde veya işletmede sorunlarmı yaşıyorsunuz? Gelin size en güncel deneyimlerimizle yardımcı olalım.</p>
+        <a href="#blog" class="cta-button animate-up">Başlayın</a>
+        <div class="title">
+            <div class="info animate-up">
+                <p>30 yıllık deneyim</p>
+                <p>Güvenilir hizmet</p>
+                <p>Akıllı çözümler</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hakkında Bölümü -->
+    <section id="about" class="section">
+        <h2 class="animate-up">Ben(Ayhan Osmanlıoğlu), kimim? Öz Geçmişim:</h2>
+        <p class="animate-up">...</p>
+    </section>
+
+    <!-- Blog Bölümü -->
+    <section id="blog" class="section">
+        <h2 class="animate-up">Fiyatlandırma-Paketler</h2>
+        <div class="blog-post animate-up">
+            <h3>Aylık Paket</h3>
+            <p>Bir aylık Geçerli Pakettir. Fiyat=300$</p>
+        </div>
+        <div class="blog-post animate-up">
+            <h3>Günlük Paket</h3>
+            <p>Bir günlük için geçerli pakkettir. Fiyat=75$</p>
+        </div>
+        <div class="blog-post animate-up">
+            <h3>Serbest Paket</h3>
+            <p>Zamanlamayı müşteri belirler. Müşteri ye uygun olan zamanlama belirlendikten sonra görüşme sonucu fiyatlandırma verilir. </p>
+        </div>
+    </section>
+
+    <!-- İletişim Bölümü -->
+    <section id="contact" class="section">
+        <h2 class="animate-up">İletişim</h2>
+        <form class="animate-up" onsubmit="sendEmail(event)">
+            <label for="name">Ad Soyad</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="message">Mesaj</label>
+            <textarea id="message" name="message" required></textarea>
+            
+            <button type="submit">Email Gönder</button>
+        </form>
+        <div class="whatsapp-container animate-up">
+            <p>WhatsApp'tan iletişim için alttaki butona tıklayın</p>
+            <a href="https://wa.me/905332826130" target="_blank" class="whatsapp-button">WhatsApp ile İletişime Geç</a>
+            <p class="phone-number">+905332826130</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Blog Sitesi. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script>
+        // Animasyonları kaydırma ile tetikleme
+document.addEventListener('DOMContentLoaded', () => {
+    const animatedElements = document.querySelectorAll('.animate-up');
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target); // Tekrar animasyon yapmamak için gözlemlemeyi durdur
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    animatedElements.forEach(el => observer.observe(el));
+});
+
+        function sendEmail(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            const mailtoLink = `mailto:osmanlioglumustafakemal2@gmail.com?subject=İletişim Formu Mesajı&body=Ad Soyad: ${name}%0AEmail: ${email}%0AMesaj: ${message}`;
+            window.location.href = mailtoLink;
+        }
+    </script>
+</body>
+</html>
